@@ -12,9 +12,17 @@ const Product = sequelize.define('product', {
     },
     origen: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     imageUrl: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
+    imageUrl2: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
+    imageUrl3: {
         type: DataTypes.STRING,
         allowNull: true
     }

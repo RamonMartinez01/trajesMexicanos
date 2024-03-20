@@ -14,6 +14,9 @@ productRouter.route('/productstrajes/:id')
     .put(update);
 
 productRouter.route('/updateproductimage/:id')
-    .put(upload.single('imageUrl'), updateProductImage)
+    .put(
+        upload.any('imageUrl', 'imageUrl2', 'imageUrl3'),
+        updateProductImage
+    )
     
 module.exports = productRouter;
