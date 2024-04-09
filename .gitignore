@@ -1,4 +1,6 @@
-node_modules
+# Javascript node_modules
+node_modules/
+
+# API keys
 .env
-./src/.env
 
