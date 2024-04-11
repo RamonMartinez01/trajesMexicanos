@@ -1,0 +1,40 @@
+version: "3.0"
+
+services:
+
+  db:
+    image: postgis/postgis:12-3.3-alpine
+    container_name: cont-postgis-trajes
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - ./src/psql.sh:/docker-entrypoint-initdb.d/psql.sh
+    ports:
+      - "5433:5432"
+    networks:
+      trajesmex_db:
+        ipv4_address: 172.15.238.10
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: cont-trajes
+    restart: always
+    volumes: 
+      - $PWD:/home/node/app
+    network_mode: trajesmexicanos_trajesmex_db
+    ports: 
+      - "8090:3000"
+      
+volumes:
+  app:
+
+networks:
+  trajesmex_db:
+    ipam:
+      driver: default
+      config:
+        - subnet: "172.15.238.0/24"
